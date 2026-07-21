@@ -23,60 +23,60 @@ Repte 2:
 Descobreix com tipar params com un objecte amb una clau first que sigui un nombre i una clau second que també sigui un nombre.
 */
 
-describe("Problema de paràmetre objecte", () => {
-  it("Ha de sumar els dos nombres", () => {
-    const addTwoNumbers = (params:{first:number,second:number}) => {
-      return params.first + params.second;
-    };
-    expect(
-      addTwoNumbers({
-        first: 2,
-        second: 4,
-      })
-    ).toEqual(6);
+// describe("Problema de paràmetre objecte", () => {
+//   it("Ha de sumar els dos nombres", () => {
+//     const addTwoNumbers = (params:{first:number,second:number}) => {
+//       return params.first + params.second;
+//     };
+//     expect(
+//       addTwoNumbers({
+//         first: 2,
+//         second: 4,
+//       })
+//     ).toEqual(6);
 
-    expect(
-      addTwoNumbers({
-        first: 10,
-        second: 20,
-      })
-    ).toEqual(30);
-  expectTypeOf(addTwoNumbers).parameter(0).toEqualTypeOf<{ first: number; second: number }>();
+//     expect(
+//       addTwoNumbers({
+//         first: 10,
+//         second: 20,
+//       })
+//     ).toEqual(30);
+//   expectTypeOf(addTwoNumbers).parameter(0).toEqualTypeOf<{ first: number; second: number }>();
 
-  });
+//   });
 
-});
+// });
 
 // /*
 // Repte 3:
 // Has d'esbrinar com tipar l'objecte perquè 'last' sigui opcional.
 // */
 
-// describe("Problema de propietats opcionals", () => {
-//   const getName = (params: { first: string; last: string }) => {
-//     if (params.last !== undefined) {
-//       return `${params.first} ${params.last}`;
-//     }
-//     return params.first;
-//   };
+describe("Problema de propietats opcionals", () => {
+  const getName = (params: { first: string; last?: string }) => {
+    if (params.last !== undefined) {
+      return `${params.first} ${params.last}`;
+    }
+    return params.first;
+  };
 
-//   it("Ha de funcionar només amb el nom", () => {
-//     const name = getName({
-//       first: "Jen",
-//     });
+  it("Ha de funcionar només amb el nom", () => {
+    const name = getName({
+      first: "Jen",
+    });
 
-//     expect(name).toEqual("Jen");
-//   });
+    expect(name).toEqual("Jen");
+  });
 
-//   it("Ha de funcionar amb el nom i el cognom", () => {
-//     const name = getName({
-//       first: "Jen",
-//       last: "Simmons",
-//     });
+  it("Ha de funcionar amb el nom i el cognom", () => {
+    const name = getName({
+      first: "Jen",
+      last: "Simmons",
+    });
 
-//     expect(name).toEqual("Jen Simmons");
-//   });
-// });
+    expect(name).toEqual("Jen Simmons");
+  });
+});
 
 // /*
 // Repte 4:

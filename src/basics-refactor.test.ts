@@ -387,29 +387,29 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 // Pista: hi ha diverses maneres de resoldre aquest repte, prova diferents opcions!
 // */
 
-describe("Problema de blocs catch", () => {
-  const tryCatchDemo = (state: "fail" | "succeed") => {
-    try {
-      if (state === "fail") {
-        throw new Error("Failure!");
-      }
-    }
-    catch (e) {
-      // return (e as Error).message;      /*OP2 Type assertion*/
+// describe("Problema de blocs catch", () => {
+//   const tryCatchDemo = (state: "fail" | "succeed") => {
+//     try {
+//       if (state === "fail") {
+//         throw new Error("Failure!");
+//       }
+//     }
+//     catch (e) {
+//       // return (e as Error).message;      /*OP1 Type assertion*/
 
-      if (e instanceof Error) {         /*OP3 instanceof ERROR*/
-        return e.message;
-      }
-    // if (e && typeof e === "object" && "message" in e) { /*OP3 operador in*/
-    //   return (e as { message: string }).message;
-    // }
-    }
-  };
+//       if (e instanceof Error) {         /*OP2 instanceof ERROR*/
+//         return e.message;
+//       }
+//     // if (e && typeof e === "object" && "message" in e) { /*OP3 operador in*/
+//     //   return (e as { message: string }).message;
+//     // }
+//     }
+//   };
 
-  it("Ha de retornar el missatge quan falla", () => {
-    expect(tryCatchDemo("fail")).toEqual("Failure!");
-  });
-});
+//   it("Ha de retornar el missatge quan falla", () => {
+//     expect(tryCatchDemo("fail")).toEqual("Failure!");
+//   });
+// });
 
 // /*
 // Repte 14:
@@ -421,30 +421,32 @@ describe("Problema de blocs catch", () => {
 //  Pista: pots crear una interfície base i reutilitzar-la amb extends.
 // */
 
-// describe("Problema d'herència amb extends", () => {
-//   interface User {
-//     id: string;
-//     firstName: string;
-//     lastName: string;
-//   }
+describe("Problema d'herència amb extends", () => {
+  interface Base {
+    id: string;
+  }
+  
+   interface User extends Base  {
+    firstName: string;
+    lastName: string;
+  }
 
-//   interface Post {
-//     id: string;
-//     title: string;
-//     body: string;
-//   }
+  interface Post extends Base {
+    title: string;
+    body: string;
+  }
 
-//   interface Comment {
-//     id: string;
-//     comment: string;
-//   }
+  interface Comment extends Base {
+    comment: string;
+  }
 
-//   type tests = [
-//     Expect<Equal<User, { id: string; firstName: string; lastName: string }>>,
-//     Expect<Equal<Post, { id: string; title: string; body: string }>>,
-//     Expect<Equal<Comment, { id: string; comment: string }>>
-//   ];
-// });
+
+  type tests = [
+    Expect<Equal<User, { id: string; firstName: string; lastName: string }>>,
+    Expect<Equal<Post, { id: string; title: string; body: string }>>,
+    Expect<Equal<Comment, { id: string; comment: string }>>
+  ];
+});
 
 // /*
 // Repte 15:

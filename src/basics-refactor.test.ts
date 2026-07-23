@@ -453,7 +453,7 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 // Actualitza el tipus de retorn de la funció perquè sigui 'User i { posts: Post[] }'.
 // */
 
-// describe("Problema d'intersecció de tipus", ()=> { ... }
+describe("Problema d'intersecció de tipus"), ()=> { 
   interface User {
     id: string;
     firstName: string;
@@ -490,7 +490,7 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 
    expect(userAndPosts.posts[0].id).toBeTypeOf("string");
   });
-
+ }
 // /*
 // Repte 16:
 // Com creem un nou tipus d'objecte amb NOMÉS les propietats firstName i lastName de User?

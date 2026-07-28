@@ -172,83 +172,84 @@ import { Equal, Expect } from "./helpers/type-utils";
 // Repte 8:
 // Utilitza indexed access types per obtenir el tipus dels valors d'un objecte amb as const.
 // */
-describe("Transformació: obtenir el tipus dels valors d'un objecte amb as const", () => {
-  const frontendToBackendEnumMap = {
-    singleModule: "SINGLE_MODULE",
-    multiModule: "MULTI_MODULE",
-    sharedModule: "SHARED_MODULE",
-  } as const;
+// describe("Transformació: obtenir el tipus dels valors d'un objecte amb as const", () => {
+//   const frontendToBackendEnumMap = {
+//     singleModule: "SINGLE_MODULE",
+//     multiModule: "MULTI_MODULE",
+//     sharedModule: "SHARED_MODULE",
+//   } as const;
 
-  type BackendModuleEnum = (typeof frontendToBackendEnumMap)[keyof typeof frontendToBackendEnumMap]; //(typeof frontendToBackendEnumMap)["singleModule" |"multiModule"| "sharedModule"];
+//   type BackendModuleEnum = (typeof frontendToBackendEnumMap)[keyof typeof frontendToBackendEnumMap]; //(typeof frontendToBackendEnumMap)["singleModule" |"multiModule"| "sharedModule"];
 
-  type tests = [
-    Expect<
-      Equal<BackendModuleEnum, "SINGLE_MODULE" | "MULTI_MODULE" | "SHARED_MODULE">
-    >,
-  ];
-});
+//   type tests = [
+//     Expect<
+//       Equal<BackendModuleEnum, "SINGLE_MODULE" | "MULTI_MODULE" | "SHARED_MODULE">
+//     >,
+//   ];
+// });
 
 // /*
 // Repte 9:
 // Dona un exemple de terminologia: union, discriminated union i enum.
 // */
-// describe("Transformació: terminologia de tipus", () => {
+describe("Transformació: terminologia de tipus", () => {
 //   /**
 //    * És important entendre la terminologia sobre unions:
 //    *
-//    * Una de les declaracions de tipus següents és una union.
-//    * Una de les declaracions de tipus següents és una discriminated union.
-//    * Una de les declaracions de tipus següents és un enum.
+//    * Una de les declaracions de tipus següents és una union -> type B
+//    * Una de les declaracions de tipus següents és una discriminated union -> Type A
+//    * Una de les declaracions de tipus següents és un enum -> Type C
 //    *
 //    * Quina és quina?
 //    */
 
-//   type A =
-//     | {
-//         type: "a";
-//         a: string;
-//       }
-//     | {
-//         type: "b";
-//         b: string;
-//       }
-//     | {
-//         type: "c";
-//         c: string;
-//       };
+  type A =
+    | {
+        type: "a";
+        a: string;
+      }
+    | {
+        type: "b";
+        b: string;
+      }
+    | {
+        type: "c";
+        c: string;
+      };
 
-//   type B = "a" | "b" | "c";
+  type B = "a" | "b" | "c";
 
-//   enum C {
-//     A = "a",
-//     B = "b",
-//     C = "c",
-//   }
-// });
+  enum C {
+    A = "a",
+    B = "b",
+    C = "c",
+  }
+});
 
 // /*
 // Repte 10:
 // Extreu un tipus d'un element concret d'una discriminated union.
 // */
-// describe("Transformació: extract d'una discriminated union", () => {
-//   type Event =
-//     | {
-//         type: "click";
-//         event: MouseEvent;
-//       }
-//     | {
-//         type: "focus";
-//         event: FocusEvent;
-//       }
-//     | {
-//         type: "keydown";
-//         event: KeyboardEvent;
-//       };
+describe("Transformació: extract d'una discriminated union", () => {
+  type Event =
+    | {
+        type: "click";
+        event: MouseEvent;
+      }
+    | {
+        type: "focus";
+        event: FocusEvent;
+      }
+    | {
+        type: "keydown";
+        event: KeyboardEvent;
+      };
+      
 
-//   type ClickEvent = unknown;
+  type ClickEvent = Extract<Event, { type: "click" }>;
 
-//   type tests = [Expect<Equal<ClickEvent, { type: "click"; event: MouseEvent }>>];
-// });
+  type tests = [Expect<Equal<ClickEvent, { type: "click"; event: MouseEvent }>>];
+});
 
 // /*
 // Repte 11:

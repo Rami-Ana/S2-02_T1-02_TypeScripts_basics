@@ -523,14 +523,16 @@ Descobreix com tipar params com un objecte amb una clau first que sigui un nombr
 // describe("Problema de tipus de funció", () => {
 
 //   const addListener = (onFocusChange: (isFocused: boolean) => void) => {
-//     window.addEventListener("focus", () => { //ReferenceError: window is not defined. Problema del entorno de ejecución de los tests
+//     if (typeof window !== "undefined") {
+//     window.addEventListener("focus", () => {
 //       onFocusChange(true);
 //     });
-
 //     window.addEventListener("blur", () => { //ReferenceError: window is not defined. 
 //       onFocusChange(false);
 //     });
+//   }
 //   };
+  
 
 //   addListener((isFocused) => {
 //     console.log({ isFocused });

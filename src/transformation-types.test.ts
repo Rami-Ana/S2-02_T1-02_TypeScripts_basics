@@ -244,7 +244,7 @@ describe("Transformació: extract d'una discriminated union", () => {
         type: "keydown";
         event: KeyboardEvent;
       };
-      
+
 
   type ClickEvent = Extract<Event, { type: "click" }>;
 
@@ -255,33 +255,33 @@ describe("Transformació: extract d'una discriminated union", () => {
 // Repte 11:
 // Exclou un tipus concret d'una discriminated union.
 // */
-// describe("Transformació: exclude d'una discriminated union", () => {
-//   type Event =
-//     | {
-//         type: "click";
-//         event: MouseEvent;
-//       }
-//     | {
-//         type: "focus";
-//         event: FocusEvent;
-//       }
-//     | {
-//         type: "keydown";
-//         event: KeyboardEvent;
-//       };
+describe("Transformació: exclude d'una discriminated union", () => {
+  type Event =
+    | {
+        type: "click";
+        event: MouseEvent;
+      }
+    | {
+        type: "focus";
+        event: FocusEvent;
+      }
+    | {
+        type: "keydown";
+        event: KeyboardEvent;
+      };
 
-//   type NonKeyDownEvents = unknown;
+  type NonKeyDownEvents = Exclude<Event, { type: "keydown" }>;
 
-//   type tests = [
-//     Expect<
-//       Equal<
-//         NonKeyDownEvents,
-//         | { type: "click"; event: MouseEvent }
-//         | { type: "focus"; event: FocusEvent }
-//       >
-//     >,
-//   ];
-// });
+  type tests = [
+    Expect<
+      Equal<
+        NonKeyDownEvents,
+        | { type: "click"; event: MouseEvent }
+        | { type: "focus"; event: FocusEvent }
+      >
+    >,
+  ];
+});
 
 // /*
 // Repte 12:
